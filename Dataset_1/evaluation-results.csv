@@ -1,0 +1,10 @@
+Model,Accuracy,Precision,Recall,F1
+base:gpt-4-0125-preview,0.9825,0.9825,0.9825,0.9825
+ft:gpt-4,0.993,0.993,0.993,0.993
+ft:roberta-adam,0.9904,0.9904,0.9904,0.9904
+ft:bert-adam,0.9939,0.9939,0.9939,0.9939
+ft:cnn-adam,0.7609,0.579,0.7609,0.6576
+ft:gpt-4-cross,0.9433,0.9437,0.9433,0.9415
+ft:roberta-adam-cross,0.6161,0.7938,0.6161,0.6419
+ft:bert-adam-cross,0.5846,0.7834,0.5846,0.6105
+ft:cnn-adam-cross,0.7609,0.579,0.7609,0.6576
