@@ -8,7 +8,7 @@ import seaborn as sns
 class EvaluationMethods:
     def __init__(self, dataset_path=''):
         self.dataset_path = dataset_path
-        self.pre_path = '../Datasets/'
+        self.pre_path = '../Dataset_1/'
 
     def evaluate_results(self, original, prediction, model_name):
         data = pd.read_csv(self.pre_path + self.dataset_path)
@@ -54,6 +54,21 @@ class EvaluationMethods:
 
         return mae
 
+    def plot_confusion_matrix(self, original_column, prediction_column):
+        dataframe = pd.read_csv(self.pre_path + self.dataset_path)
+
+        # Extract data from DataFrame
+        y_true = dataframe[original_column]
+        y_pred = dataframe[prediction_column]
+
+        cm = confusion_matrix(y_true, y_pred)
+        plt.figure(figsize=(8, 6))
+        sns.heatmap(cm, annot=True, fmt="d", cmap="Blues")
+        plt.xlabel('Predicted')
+        plt.ylabel('True')
+        plt.title('Confusion Matrix \n('+prediction_column+')')
+        plt.show()
+
     def count_matching_rows(self, original_column, prediction_column):
         df = pd.read_csv(self.pre_path + self.dataset_path)
 
@@ -75,15 +90,15 @@ EVM = EvaluationMethods(dataset_path='test_set.csv')
 # print(str(EVM.count_matching_rows('Spam', 'cnn_optimizer_Adam_lr_2e-05_epochs_3_bs_6_maxlen_4096_prediction')))
 
 # # Evaluate the predictions made by each model
-print(f'base:gpt-4-0125-preview: ' + str(EVM.evaluate_results('Spam', 'gpt_bm_prediction', 'base:gpt-4-0125-preview')))
-print(f'ft:gpt-4: ' + str(EVM.evaluate_results('Spam', 'gpt_ft_prediction', 'ft:gpt-4')))
-print(f'ft:roberta-adam: ' + str(EVM.evaluate_results('Spam', 'ft_roberta_adam', 'ft:roberta-adam')))
-print(f'ft:bert-adam: ' + str(EVM.evaluate_results('Spam', 'ft_bert_adam', 'ft:bert-adam')))
-print(f'ft:cnn-adam: ' + str(EVM.evaluate_results('Spam', 'ft_cnn_adam', 'ft:cnn-adam')))
-print(f'ft:gpt-4-cross: ' + str(EVM.evaluate_results('Spam', 'gpt_ft_cross', 'ft:gpt-4-cross')))
-print(f'ft:roberta-adam-cross: ' + str(EVM.evaluate_results('Spam', 'ft_roberta_adam_cross', 'ft:roberta-adam-cross')))
-print(f'ft:bert-adam-cross: ' + str(EVM.evaluate_results('Spam', 'ft_bert_adam_cross', 'ft:bert-adam-cross')))
-print(f'ft:cnn-adam-cross: ' + str(EVM.evaluate_results('Spam', 'ft_cnn_adam_cross', 'ft:cnn-adam-cross')))
+# print(f'base:gpt-4-0125-preview: ' + str(EVM.evaluate_results('Spam', 'gpt_bm_prediction', 'base:gpt-4-0125-preview')))
+# print(f'ft:gpt-4: ' + str(EVM.evaluate_results('Spam', 'gpt_ft_prediction', 'ft:gpt-4')))
+# print(f'ft:roberta-adam: ' + str(EVM.evaluate_results('Spam', 'ft_roberta_adam', 'ft:roberta-adam')))
+# print(f'ft:bert-adam: ' + str(EVM.evaluate_results('Spam', 'ft_bert_adam', 'ft:bert-adam')))
+# print(f'ft:cnn-adam: ' + str(EVM.evaluate_results('Spam', 'ft_cnn_adam', 'ft:cnn-adam')))
+# print(f'ft:gpt-4-cross: ' + str(EVM.evaluate_results('Spam', 'gpt_ft_cross', 'ft:gpt-4-cross')))
+# print(f'ft:roberta-adam-cross: ' + str(EVM.evaluate_results('Spam', 'ft_roberta_adam_cross', 'ft:roberta-adam-cross')))
+# print(f'ft:bert-adam-cross: ' + str(EVM.evaluate_results('Spam', 'ft_bert_adam_cross', 'ft:bert-adam-cross')))
+# print(f'ft:cnn-adam-cross: ' + str(EVM.evaluate_results('Spam', 'ft_cnn_adam_cross', 'ft:cnn-adam-cross')))
 
 # Create scatterplots
 # print(EVM.scatterplot(original_column='Spam', prediction_column='gpt_bm_prediction'))
@@ -91,9 +106,12 @@ print(f'ft:cnn-adam-cross: ' + str(EVM.evaluate_results('Spam', 'ft_cnn_adam_cro
 # print(EVM.scatterplot(original_column='Spam', prediction_column='ft_roberta_adam'))
 # print(EVM.scatterplot(original_column='Spam', prediction_column='ft_bert_adam'))
 # print(EVM.scatterplot(original_column='Spam', prediction_column='ft_cnn_adam'))
-# print(EVM.scatterplot(original_column='Spam', prediction_column='gpt_ft_cross'))
-# print(EVM.scatterplot(original_column='Spam', prediction_column='ft_roberta_adam_cross'))
-# print(EVM.scatterplot(original_column='Spam', prediction_column='ft_bert_adam_cross'))
-# print(EVM.scatterplot(original_column='Spam', prediction_column='ft_cnn_adam_cross'))
+
+# Create confusion matrix
+# EVM.plot_confusion_matrix(original_column='Spam', prediction_column='gpt_bm_prediction')
+# EVM.plot_confusion_matrix(original_column='Spam', prediction_column='gpt_ft_prediction')
+# EVM.plot_confusion_matrix(original_column='Spam', prediction_column='ft_roberta_adam')
+# EVM.plot_confusion_matrix(original_column='Spam', prediction_column='ft_bert_adam')
+# EVM.plot_confusion_matrix(original_column='Spam', prediction_column='ft_cnn_adam')
 
 
