@@ -1,6 +1,6 @@
 # Next-Generation Spam Filtering: Comparative Fine-Tuning of LLMs, NLPs, and CNN Models for Email Spam Classification
 
-## Under Review Paper
+## Published Paper
 * **Journal**: [Electronics | An Open Access Journal from MDPI](https://www.mdpi.com/journal/electronics)
 * **Title**: [Next-Generation Spam Filtering: Comparative Fine-Tuning of LLMs, NLPs, and CNN Models for Email Spam Classification](https://www.mdpi.com/2079-9292/13/11/2034)
 * **DOI**: https://doi.org/10.3390/electronics13112034
